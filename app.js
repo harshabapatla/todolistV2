@@ -22,12 +22,12 @@ app.use(express.static("public"));
 
 
 async function connectToDatabase() {
-  const dbUri = Mongo_URI;
+  const dbUri = process.env.Mongo_URI;
   const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    user: userName, // Add your MongoDB Atlas username here
-    pass: password, // Add your MongoDB Atlas password here
+    user: process.env.userName, // Add your MongoDB Atlas username here
+    pass: process.env.password, // Add your MongoDB Atlas password here
     dbName: 'todolistDB' // Add your database name here
   };
 
