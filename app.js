@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const e = require("express");
 const _ = require("lodash");
 // const date = require(__dirname + "/date.js");
-require('dotenv').config();
 
 const app = express();
 
@@ -23,12 +22,12 @@ app.use(express.static("public"));
 
 
 async function connectToDatabase() {
-  const dbUri = process.env.Mongo_URI;
+  const dbUri = 'mongodb+srv://cluster0.0ihsrqy.mongodb.net/';
   const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    user: process.env.userName, // Add your MongoDB Atlas username here
-    pass: process.env.password, // Add your MongoDB Atlas password here
+    user: 'hbapatla', // Add your MongoDB Atlas username here
+    pass: 'Test123', // Add your MongoDB Atlas password here
     dbName: 'todolistDB' // Add your database name here
   };
 
@@ -40,14 +39,13 @@ async function connectToDatabase() {
 // Call the async function to establish the database connection
 connectToDatabase()
   .then(() => {
-    app.listen(port,function(){
-      console.log("Server Started Successfully");// Perform any further operations that depend on the database connection
+    // Perform any further operations that depend on the database connection
   })
   .catch((error) => {
     console.error('Error connecting to the database:', error);
   });
 
-  })
+
 const itemsSchema = {
   name :String
 
@@ -121,7 +119,7 @@ app.post("/",async function(req, res){
     console.log(err);
    });
   }
-});
+})
 
  
  
@@ -176,10 +174,7 @@ let port = process.env.PORT;
 if(port==null || port==""){
   port =8000;
 }
-else{
-  console.log("Error connecting the port");
-}
+
 app.listen(port, function() {
     console.log("Server started successfully");
   });
-
