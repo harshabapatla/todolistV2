@@ -39,13 +39,14 @@ async function connectToDatabase() {
 // Call the async function to establish the database connection
 connectToDatabase()
   .then(() => {
-    // Perform any further operations that depend on the database connection
+    app.listen(port,function(){
+      console.log("Server Started Successfully");// Perform any further operations that depend on the database connection
   })
   .catch((error) => {
     console.error('Error connecting to the database:', error);
   });
 
-
+  })
 const itemsSchema = {
   name :String
 
@@ -119,7 +120,7 @@ app.post("/",async function(req, res){
     console.log(err);
    });
   }
-})
+});
 
  
  
