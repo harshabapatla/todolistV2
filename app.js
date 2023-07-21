@@ -21,13 +21,13 @@ app.use(express.static("public"));
 
 
 
-async function connectToDatabase() {
-  const dbUri = 'mongodb+srv://cluster0.0ihsrqy.mongodb.net/';
+const connectDB =async function connectToDatabase() {
+  const dbUri = Mongo_URI;
   const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    user: 'hbapatla', // Add your MongoDB Atlas username here
-    pass: 'Test123', // Add your MongoDB Atlas password here
+    user: userName, // Add your MongoDB Atlas username here
+    pass: password, // Add your MongoDB Atlas password here
     dbName: 'todolistDB' // Add your database name here
   };
 
@@ -175,6 +175,9 @@ if(port==null || port==""){
   port =8000;
 }
 
-app.listen(port, function() {
-  console.log("Server started successfully");
+connectDB().then(()=>{
+  app.listen(port, function() {
+    console.log("Server started successfully");
+  });
 });
+
