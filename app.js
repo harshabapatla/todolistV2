@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const e = require("express");
 const _ = require("lodash");
 // const date = require(__dirname + "/date.js");
+require('dotenv').config();
 
 const app = express();
 
