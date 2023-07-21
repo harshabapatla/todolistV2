@@ -21,7 +21,7 @@ app.use(express.static("public"));
 
 
 
-const connectDB =async function connectToDatabase() {
+async function connectToDatabase() {
   const dbUri = Mongo_URI;
   const options = {
     useNewUrlParser: true,
@@ -174,10 +174,10 @@ let port = process.env.PORT;
 if(port==null || port==""){
   port =8000;
 }
-
-connectDB().then(()=>{
-  app.listen(port, function() {
+else{
+  console.log("Error connecting the port");
+}
+app.listen(port, function() {
     console.log("Server started successfully");
   });
-});
 
