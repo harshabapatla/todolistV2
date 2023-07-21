@@ -3,7 +3,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const e = require("express");
 const _ = require("lodash");
 // const date = require(__dirname + "/date.js");
 
@@ -22,7 +21,7 @@ app.use(express.static("public"));
 
 
 async function connectToDatabase() {
-  const dbUri = 'mongodb+srv://cluster0.0ihsrqy.mongodb.net/';
+  const dbUri = "mongodb+srv://cluster0.0ihsrqy.mongodb.net/";
   const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
