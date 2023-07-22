@@ -119,7 +119,7 @@ app.post("/",async function(req, res){
     res.redirect("/");
   }else{
     // .exec( ) use when you have conditions in your search. Stands for excution()
-   await List.findOne({name:listName}).exec().then(foundList =>{
+   await List.findOne({name:listName}).maxTimeMS(30000).exec().then(foundList =>{
     foundList.items.push(item);
     foundList.save();
     res.redirect("/"+listName)
