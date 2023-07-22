@@ -9,7 +9,7 @@ const _ = require("lodash");
 
 const app = express();
 app.set('view engine', 'ejs');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 mongoose.set('strictQuery',false);
 
@@ -172,10 +172,6 @@ app.get("/:customListName", async function (req, res) {
 app.get("/about", function(req, res){
   res.render("about");
 });
-let port = process.env.PORT;
-if(port==null || port==""){
-  port =3000;
-}
 
 app.listen(PORT, function() {
     console.log("Server started successfully");
