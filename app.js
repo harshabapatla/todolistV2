@@ -9,18 +9,10 @@ const _ = require("lodash");
 
 const app = express();
 app.set('view engine', 'ejs');
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 mongoose.set('strictQuery',false);
-const connectDB =async()=>{
-  try {
-    const conn =await mongoose.connect(process.env.Mongo_URI)
-    console.log('MongoDB connected');
-  } catch (error) {
-    console.log(error);
-    
-  }
-}
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 // connect to mongo database
@@ -37,11 +29,13 @@ async function connectToDatabase() {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   };
-
+try{
   const db = await mongoose.connect(dbUri, options);
   console.log('Connected to the database!');
   return db;
-}
+}catch(error){
+  console.log("Error connecting the database",error);
+}}
 
 // Call the async function to establish the database connection
 connectToDatabase()
@@ -183,6 +177,6 @@ if(port==null || port==""){
   port =3000;
 }
 
-app.listen(port, function() {
+app.listen(PORT, function() {
     console.log("Server started successfully");
   });
